@@ -25,3 +25,11 @@ import map from 'lodash/collection/map';
 
 map();
 ```
+
+## Difference from babel-plugin-lodash
+
+[`babel-plugin-lodash`](https://github.com/megawac/babel-plugin-lodash) [attempts to resolve](https://github.com/megawac/babel-plugin-lodash/blob/v1.0.1/src/lodash-modules.js) lodash module associated with the target script. `babel-plugin-lodash-modularize` is using a hard-coded map to construct the module import path.
+
+In addition, `babel-plugin-lodash` supports `lodash-fp` (`babel-plugin-lodash-modularize` does not).
+
+`babel-plugin-lodash-modularize` will support [`_.chain`](https://lodash.com/docs#chain).
