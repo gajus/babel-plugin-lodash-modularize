@@ -1,0 +1,3 @@
+import _chunk from 'lodash/array/chunk';
+
+_chunk(['a', 'b', 'c'], 2);

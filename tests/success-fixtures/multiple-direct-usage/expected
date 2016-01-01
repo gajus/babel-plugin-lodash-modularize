@@ -1,0 +1,5 @@
+import _forEach from 'lodash/collection/forEach';
+import _map from 'lodash/collection/map';
+
+_map();
+_forEach();

@@ -1,0 +1,5 @@
+import {
+    map as map1
+} from 'lodash';
+
+map1();

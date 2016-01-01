@@ -1,0 +1,4 @@
+import lodash from 'lodash';
+
+lodash.map();
+lodash.forEach();

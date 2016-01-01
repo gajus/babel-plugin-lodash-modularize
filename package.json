@@ -1,0 +1,38 @@
+{
+  "name": "babel-plugin-lodash-modularize",
+  "description": "Babel plugin that replaces lodash library import statement to individual module imports.",
+  "version": "0.0.0",
+  "main": "./dist/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gajus/babel-plugin-lodash-modularize"
+  },
+  "keywords": [
+    "babel",
+    "plugin",
+    "lodash",
+    "modularize"
+  ],
+  "author": {
+    "name": "Gajus Kuizinas",
+    "email": "gajus@gajus.com",
+    "url": "http://gajus.com"
+  },
+  "license": "BSD-3-Clause",
+  "scripts": {
+    "pragmatist": "node ./node_modules/.bin/pragmatist --browser",
+    "lint": "npm run pragmatist lint",
+    "test": "npm run pragmatist test",
+    "build": "npm run pragmatist build",
+    "watch": "npm run pragmatist watch",
+    "watch-lint": "npm run pragmatist watch-lint",
+    "watch-test": "npm run pragmatist watch-test",
+    "watch-build": "npm run pragmatist watch-build",
+    "module-map": "npm run build; node ./dist/bin > ./src/methodMap.js"
+  },
+  "devDependencies": {
+    "babel-core": "^6.3.26",
+    "chai": "^3.4.1",
+    "pragmatist": "^2.3.13"
+  }
+}

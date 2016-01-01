@@ -1,0 +1,3 @@
+import _map from 'lodash/collection/map';
+
+_map();

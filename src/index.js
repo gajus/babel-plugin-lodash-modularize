@@ -1,0 +1,90 @@
+import resolveMethod from './resolveMethod';
+
+export default ({
+    types: t
+}) => {
+    let importMethod,
+        lodashObjects,
+        selectedMethods,
+        specified;
+
+    importMethod = (methodName, file) => {
+        if (!selectedMethods[methodName]) {
+            selectedMethods[methodName] = file.addImport(resolveMethod(methodName), 'default', methodName);
+        }
+
+        return selectedMethods[methodName];
+    };
+
+    return {
+        visitor: {
+            CallExpression (path) {
+                let file,
+                    name,
+                    node;
+
+
+                ({node} = path);
+                ({name} = node.callee);
+                ({file} = path.hub);
+
+                if (!t.isIdentifier(node.callee)) {
+                    return;
+                }
+
+                if (specified[name]) {
+                    node.callee = importMethod(specified[name], file);
+                }
+
+                if (lodashObjects[name]) {
+                    throw new Error('lodash chaining syntax is not supported.');
+                }
+            },
+            ImportDeclaration (path) {
+                let node,
+                    value;
+
+                ({node} = path);
+                ({value} = node.source);
+
+                if (value !== 'lodash') {
+                    return;
+                }
+
+                node.specifiers.forEach((specifier) => {
+                    if (t.isImportSpecifier(specifier)) {
+                        specified[specifier.local.name] = specifier.imported.name;
+                    } else {
+                        lodashObjects[specifier.local.name] = true;
+                    }
+                });
+
+                path.remove();
+            },
+            MemberExpression (path) {
+                let file,
+                    node;
+
+                ({node} = path);
+                ({file} = path.hub);
+
+                if (!lodashObjects[node.object.name]) {
+                    return;
+                }
+
+                if (node.property.name === 'chain') {
+                    throw new Error('lodash chaining syntax is not supported.');
+                }
+
+                path.replaceWith(importMethod(node.property.name, file));
+            },
+            Program: {
+                enter () {
+                    lodashObjects = {};
+                    specified = {};
+                    selectedMethods = {};
+                }
+            }
+        }
+    };
+};
