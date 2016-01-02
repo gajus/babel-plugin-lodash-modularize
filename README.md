@@ -55,4 +55,6 @@ Add to `.babelrc`:
 
 ## Development
 
-Use `npm run module-map` to generate a new module map.
+Use `npm run module-map` to generate a new module map. The new module map is generated against the lodash version installed as a dependency of the `babel-plugin-lodash-modularize` plugin.
+
+This approach will need to change when a new version of lodash comes out that does no longer use the same directory structure.
