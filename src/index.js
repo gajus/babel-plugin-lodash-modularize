@@ -1,10 +1,14 @@
 import resolveMethod from './resolveMethod';
+import semver from 'semver';
+
+const LODASH_DEFAULT_VERSION = '3.0.0';
 
 export default ({
     types: t
 }) => {
     let importMethod,
         lodashObjects,
+        lodashVersion,
         selectedMethods,
         specified;
 
@@ -22,7 +26,6 @@ export default ({
                 let file,
                     name,
                     node;
-
 
                 ({node} = path);
                 ({name} = node.callee);
@@ -79,10 +82,15 @@ export default ({
                 path.replaceWith(importMethod(node.property.name, file));
             },
             Program: {
-                enter () {
+                enter (path, state) {
                     lodashObjects = {};
                     specified = {};
                     selectedMethods = {};
+                    lodashVersion = state.opts.lodashVersion || LODASH_DEFAULT_VERSION;
+
+                    if (semver.lt(lodashVersion, '3.0.0')) {
+                        throw new Error('lodash prior to version 3 is unsupported.');
+                    }
                 }
             }
         }

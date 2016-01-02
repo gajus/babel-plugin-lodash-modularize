@@ -34,5 +34,8 @@
     "babel-core": "^6.3.26",
     "chai": "^3.4.1",
     "pragmatist": "^2.3.13"
+  },
+  "dependencies": {
+    "semver": "^5.1.0"
   }
 }

@@ -56,6 +56,24 @@ describe('plugin', () => {
                 }).to.throw(Error);
             });
         });
+
+        context('unsupported version', () => {
+            it('throws an error', () => {
+                expect(() => {
+                    transform('', {
+                        babelrc: false,
+                        plugins: [
+                            [
+                                plugin,
+                                {
+                                    lodashVersion: '2.0.0'
+                                }
+                            ]
+                        ]
+                    });
+                }).to.throw(Error, 'lodash prior to version 3 is unsupported.');
+            });
+        });
     });
 
     describe('success', () => {

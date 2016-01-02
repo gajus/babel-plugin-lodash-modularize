@@ -26,6 +26,25 @@ import map from 'lodash/collection/map';
 map();
 ```
 
+## Usage
+
+Add to `.babelrc`:
+
+```js
+{
+    "plugins": [
+        [
+            "lodash-modularize",
+            {
+                "lodashVersion": "3.0.0"
+            }
+        ]
+    ]
+}
+```
+
+`lodashVersion` option defines the version of the lodash that you are using. It is used to resolve the correct path of the individual modules.
+
 ## Difference from babel-plugin-lodash
 
 [`babel-plugin-lodash`](https://github.com/megawac/babel-plugin-lodash) [attempts to resolve](https://github.com/megawac/babel-plugin-lodash/blob/v1.0.1/src/lodash-modules.js) lodash module associated with the target script. `babel-plugin-lodash-modularize` is using a hard-coded map to construct the module import path.
