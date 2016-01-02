@@ -36,6 +36,7 @@
     "pragmatist": "^2.3.13"
   },
   "dependencies": {
+    "lodash": "^3.10.1",
     "semver": "^5.1.0"
   }
 }
