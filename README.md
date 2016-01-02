@@ -8,6 +8,10 @@ Babel plugin that replaces lodash library import statement to individual module 
 
 Using individual module imports excludes the unused lodash code from the final bundle when using module bundlers such as webpack or Browserify.
 
+### Chaining
+
+Note that use of [chaining](https://lodash.com/docs#_) defeats most of the benefits of this plugin. There is no way to modularly import chaining dependencies. As a result, use of chaining will import all of the lodash modules that can work with chaining.
+
 ## Example
 
 Converts:
@@ -44,10 +48,6 @@ Add to `.babelrc`:
 ```
 
 `lodashVersion` option defines the version of the lodash that you are using. It is used to resolve the correct path of the individual modules.
-
-## Chaining
-
-Note that use of [chaining](https://lodash.com/docs#_) defeats most of the benefits of this plugin. There is no way to modularly import chaining dependencies. As a result, use of chaining will import all of the lodash modules that can work with chaining.
 
 ## Difference from babel-plugin-lodash
 
