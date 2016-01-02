@@ -52,3 +52,7 @@ Add to `.babelrc`:
 `babel-plugin-lodash` supports `lodash-fp` (`babel-plugin-lodash-modularize` does not).
 
 `babel-plugin-lodash-modularize` can be used against a code base that does not use lodash at all, i.e. `babel-plugin-lodash-modularize` can become part of a greater Babel [preset](https://babeljs.io/docs/plugins/#presets).
+
+## Development
+
+Use `npm run module-map` to generate a new module map.
