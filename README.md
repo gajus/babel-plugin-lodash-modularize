@@ -47,8 +47,8 @@ Add to `.babelrc`:
 
 ## Difference from babel-plugin-lodash
 
-[`babel-plugin-lodash`](https://github.com/megawac/babel-plugin-lodash) [attempts to resolve](https://github.com/megawac/babel-plugin-lodash/blob/v1.0.1/src/lodash-modules.js) lodash module associated with the target script. `babel-plugin-lodash-modularize` is using a hard-coded map to construct the module import path.
+[`babel-plugin-lodash`](https://github.com/megawac/babel-plugin-lodash) [attempts to resolve](https://github.com/megawac/babel-plugin-lodash/blob/v1.0.1/src/lodash-modules.js) lodash module associated with the target script. The assumptions that `babel-plugin-lodash` makes about the `node_modules` path depend on the NPM version and the execution context. `babel-plugin-lodash-modularize` is using a hard-coded map to construct the module import path (see https://github.com/gajus/babel-plugin-lodash-modularize/commit/52636687519bf7adc3f115bc9e5eb84c19c687cc#commitcomment-15228353).
 
-In addition, `babel-plugin-lodash` supports `lodash-fp` (`babel-plugin-lodash-modularize` does not).
+`babel-plugin-lodash` supports `lodash-fp` (`babel-plugin-lodash-modularize` does not).
 
-`babel-plugin-lodash-modularize` will support [`_.chain`](https://lodash.com/docs#chain).
+`babel-plugin-lodash-modularize` can be used against a code base that does not use lodash at all, i.e. `babel-plugin-lodash-modularize` can become part of a greater Babel [preset](https://babeljs.io/docs/plugins/#presets).
