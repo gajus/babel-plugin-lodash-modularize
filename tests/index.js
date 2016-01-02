@@ -94,8 +94,6 @@ describe('plugin', () => {
 
                 resultSource = _.trim(resultSource);
 
-                // console.log('resultSource', '####\n\n', resultSource, '\n\n####');
-
                 expect(fixture.expectedSource).to.equal(resultSource);
             });
         });

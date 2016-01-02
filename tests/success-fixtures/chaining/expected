@@ -1,0 +1,3 @@
+import _chain from 'lodash/chain/chain';
+
+_chain();

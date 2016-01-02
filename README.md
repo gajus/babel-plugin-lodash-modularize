@@ -45,6 +45,10 @@ Add to `.babelrc`:
 
 `lodashVersion` option defines the version of the lodash that you are using. It is used to resolve the correct path of the individual modules.
 
+## Chaining
+
+Note that use of [chaining](https://lodash.com/docs#_) defeats most of the benefits of this plugin. There is no way to modularly import chaining dependencies. As a result, use of chaining will import all of the lodash modules that can work with chaining.
+
 ## Difference from babel-plugin-lodash
 
 [`babel-plugin-lodash`](https://github.com/megawac/babel-plugin-lodash) [attempts to resolve](https://github.com/megawac/babel-plugin-lodash/blob/v1.0.1/src/lodash-modules.js) lodash module associated with the target script. The assumptions that `babel-plugin-lodash` makes about the `node_modules` path depend on the NPM version and the execution context. `babel-plugin-lodash-modularize` is using a [hard-coded map](https://github.com/gajus/babel-plugin-lodash-modularize/blob/v0.1.0/src/methodMap.js) to construct the module import path (see [discussion](https://github.com/gajus/babel-plugin-lodash-modularize/commit/52636687519bf7adc3f115bc9e5eb84c19c687cc#commitcomment-15228353)).
@@ -52,6 +56,8 @@ Add to `.babelrc`:
 `babel-plugin-lodash` supports `lodash-fp` (`babel-plugin-lodash-modularize` does not).
 
 `babel-plugin-lodash-modularize` can be used against a code base that does not use lodash at all, i.e. `babel-plugin-lodash-modularize` can become part of a greater Babel [preset](https://babeljs.io/docs/plugins/#presets).
+
+In contrast to `babel-plugin-lodash`, `babel-plugin-lodash-modularize` does not restrict use of [chaining](https://lodash.com/docs#_). Beware of the [side effects](#chaining).
 
 ## Development
 

@@ -40,7 +40,7 @@ export default ({
                 }
 
                 if (lodashObjects[name]) {
-                    throw new Error('lodash chaining syntax is not supported.');
+                    node.callee = importMethod('chain', file);
                 }
             },
             ImportDeclaration (path) {
@@ -73,10 +73,6 @@ export default ({
 
                 if (!lodashObjects[node.object.name]) {
                     return;
-                }
-
-                if (node.property.name === 'chain') {
-                    throw new Error('lodash chaining syntax is not supported.');
                 }
 
                 path.replaceWith(importMethod(node.property.name, file));
