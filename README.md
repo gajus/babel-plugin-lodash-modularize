@@ -47,7 +47,7 @@ Add to `.babelrc`:
 
 ## Difference from babel-plugin-lodash
 
-[`babel-plugin-lodash`](https://github.com/megawac/babel-plugin-lodash) [attempts to resolve](https://github.com/megawac/babel-plugin-lodash/blob/v1.0.1/src/lodash-modules.js) lodash module associated with the target script. The assumptions that `babel-plugin-lodash` makes about the `node_modules` path depend on the NPM version and the execution context. `babel-plugin-lodash-modularize` is using a hard-coded map to construct the module import path (see https://github.com/gajus/babel-plugin-lodash-modularize/commit/52636687519bf7adc3f115bc9e5eb84c19c687cc#commitcomment-15228353).
+[`babel-plugin-lodash`](https://github.com/megawac/babel-plugin-lodash) [attempts to resolve](https://github.com/megawac/babel-plugin-lodash/blob/v1.0.1/src/lodash-modules.js) lodash module associated with the target script. The assumptions that `babel-plugin-lodash` makes about the `node_modules` path depend on the NPM version and the execution context. `babel-plugin-lodash-modularize` is using a hard-coded map to construct the module import path (see [discussion](https://github.com/gajus/babel-plugin-lodash-modularize/commit/52636687519bf7adc3f115bc9e5eb84c19c687cc#commitcomment-15228353)).
 
 `babel-plugin-lodash` supports `lodash-fp` (`babel-plugin-lodash-modularize` does not).
 
