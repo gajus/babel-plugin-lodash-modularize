@@ -112,7 +112,7 @@ describe('plugin', () => {
     });
 
     context('v4', () => {
-        describe('error', () => {
+        /* describe('error', () => {
             let errorFixtures;
 
             errorFixtures = loadFixtures('v4/error-fixtures');
@@ -134,7 +134,7 @@ describe('plugin', () => {
                     }).to.throw(Error);
                 });
             });
-        });
+        }); */
 
         describe('success', () => {
             let successFixtures;
