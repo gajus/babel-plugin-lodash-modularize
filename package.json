@@ -33,7 +33,7 @@
   "devDependencies": {
     "babel-core": "^6.4.0",
     "chai": "^3.4.1",
-    "pragmatist": "^2.3.71"
+    "pragmatist": "^2.3.73"
   },
   "dependencies": {
     "lodash": "^4.0.0",
