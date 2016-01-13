@@ -31,12 +31,12 @@
     "module-map": "npm run build; node ./dist/bin > ./src/methodMap.js"
   },
   "devDependencies": {
-    "babel-core": "^6.3.26",
+    "babel-core": "^6.4.0",
     "chai": "^3.4.1",
-    "pragmatist": "^2.3.13"
+    "pragmatist": "^2.3.71"
   },
   "dependencies": {
-    "lodash": "^3.10.1",
+    "lodash": "^4.0.0",
     "semver": "^5.1.0"
   }
 }

@@ -1,7 +1,7 @@
 import resolveMethod from './resolveMethod';
 import semver from 'semver';
 
-const LODASH_DEFAULT_VERSION = '3.0.0';
+const LODASH_DEFAULT_VERSION = '4.0.0';
 
 export default ({
     types: t
@@ -14,7 +14,7 @@ export default ({
 
     importMethod = (methodName, file) => {
         if (!selectedMethods[methodName]) {
-            selectedMethods[methodName] = file.addImport(resolveMethod(methodName), 'default', methodName);
+            selectedMethods[methodName] = file.addImport(resolveMethod(methodName, lodashVersion), 'default', methodName);
         }
 
         return selectedMethods[methodName];

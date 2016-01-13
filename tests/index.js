@@ -39,62 +39,128 @@ loadFixtures = (groupName) => {
 };
 
 describe('plugin', () => {
-    describe('error', () => {
-        let errorFixtures;
-
-        errorFixtures = loadFixtures('error-fixtures');
-
-        _.forEach(errorFixtures, (fixture) => {
-            it('OK ' + fixture.caseName, () => {
-                expect(() => {
-                    transform(fixture.actualSource, {
-                        babelrc: false,
-                        plugins: [
-                            plugin
+    context('unsupported version', () => {
+        it('throws an error', () => {
+            expect(() => {
+                transform('', {
+                    babelrc: false,
+                    plugins: [
+                        [
+                            plugin,
+                            {
+                                lodashVersion: '2.0.0'
+                            }
                         ]
-                    });
-                }).to.throw(Error);
+                    ]
+                });
+            }).to.throw(Error, 'lodash prior to version 3 is unsupported.');
+        });
+    });
+
+    context('v3', () => {
+        describe('error', () => {
+            let errorFixtures;
+
+            errorFixtures = loadFixtures('v3/error-fixtures');
+
+            _.forEach(errorFixtures, (fixture) => {
+                it('OK ' + fixture.caseName, () => {
+                    expect(() => {
+                        transform(fixture.actualSource, {
+                            babelrc: false,
+                            plugins: [
+                                [
+                                    plugin,
+                                    {
+                                        lodashVersion: '3.0.0'
+                                    }
+                                ]
+                            ]
+                        });
+                    }).to.throw(Error);
+                });
             });
         });
 
-        context('unsupported version', () => {
-            it('throws an error', () => {
-                expect(() => {
-                    transform('', {
+        describe('success', () => {
+            let successFixtures;
+
+            successFixtures = loadFixtures('v3/success-fixtures');
+
+            _.forEach(successFixtures, (fixture) => {
+                it('OK ' + fixture.caseName, () => {
+                    let resultSource;
+
+                    resultSource = transform(fixture.actualSource, {
                         babelrc: false,
                         plugins: [
                             [
                                 plugin,
                                 {
-                                    lodashVersion: '2.0.0'
+                                    lodashVersion: '3.0.0'
                                 }
                             ]
                         ]
-                    });
-                }).to.throw(Error, 'lodash prior to version 3 is unsupported.');
+                    }).code;
+
+                    resultSource = _.trim(resultSource);
+
+                    expect(fixture.expectedSource).to.equal(resultSource);
+                });
             });
         });
     });
 
-    describe('success', () => {
-        let successFixtures;
+    context('v4', () => {
+        describe('error', () => {
+            let errorFixtures;
 
-        successFixtures = loadFixtures('success-fixtures');
+            errorFixtures = loadFixtures('v4/error-fixtures');
 
-        _.forEach(successFixtures, (fixture) => {
-            it('OK ' + fixture.caseName, () => {
-                let resultSource;
+            _.forEach(errorFixtures, (fixture) => {
+                it('OK ' + fixture.caseName, () => {
+                    expect(() => {
+                        transform(fixture.actualSource, {
+                            babelrc: false,
+                            plugins: [
+                                [
+                                    plugin,
+                                    {
+                                        lodashVersion: '4.0.0'
+                                    }
+                                ]
+                            ]
+                        });
+                    }).to.throw(Error);
+                });
+            });
+        });
 
-                resultSource = transform(fixture.actualSource, {
-                    babelrc: false,
-                    plugins: [
-                        plugin
-                    ]
-                }).code;
+        describe('success', () => {
+            let successFixtures;
 
-                resultSource = _.trim(resultSource);
+            successFixtures = loadFixtures('v4/success-fixtures');
 
-                expect(fixture.expectedSource).to.equal(resultSource);
+            _.forEach(successFixtures, (fixture) => {
+                it('OK ' + fixture.caseName, () => {
+                    let resultSource;
+
+                    resultSource = transform(fixture.actualSource, {
+                        babelrc: false,
+                        plugins: [
+                                [
+                                    plugin,
+                                    {
+                                        lodashVersion: '4.0.0'
+                                    }
+                                ]
+                            ]
+                    }).code;
+
+                    resultSource = _.trim(resultSource);
+
+                    expect(fixture.expectedSource).to.equal(resultSource);
+                });
             });
         });
     });
