@@ -40,7 +40,7 @@ Add to `.babelrc`:
         [
             "lodash-modularize",
             {
-                "lodashVersion": "3.0.0"
+                "lodashVersion": "4.0.0"
             }
         ]
     ]
